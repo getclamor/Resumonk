@@ -55,5 +55,12 @@ module Resumonk
     config.assets.precompile += ['basic_pdf.css', 'classica_pdf.css', 'prestige_pdf.css', 'simplimo_pdf.css', 'sleek_pdf.css', 'show_page.css']
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.after_initialize do
+        	ActionController::Base.asset_host = Proc.new do |source, request|
+         		if request.format == 'pdf'
+            		"file://#{Rails.root.join('public')}"
+         	 	end
+       	 	end
+      	end
   end
 end

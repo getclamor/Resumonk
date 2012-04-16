@@ -38,6 +38,7 @@ gem "rufus-mnemo"
 
 group :production do
   gem 'pg'
+  gem "wkhtmltopdf-heroku"
 end
 
 # To use Jbuilder templates for JSON
