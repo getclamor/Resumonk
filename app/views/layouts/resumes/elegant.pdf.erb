@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= wicked_pdf_stylesheet_link_tag "basic_pdf" %>
+    
+  </head>
+  <body>
+    <div id="about">
+      <div id="story">
+        <h1><%= "#{@resume.firstname} #{@resume.lastname}" %></h1>
+        <% unless @resume.experiences.first.designation.blank? %>
+          <h2><%= @resume.experiences.first.designation %></h2>
+        <% end %>
+        <% unless @resume.objective.blank? %>
+          <p><%= @resume.objective %></p>
+        <% end %>
+      </div>
+      
+      <ul id="contact">
+        <% unless @resume.phone.blank? %>
+          <li><span>Phone: </span> <strong><%= @resume.phone %></strong></li>
+        <% end %>
+        <li><span>Address: </span> <strong><%= @resume.address %></strong></li>
+        
+        <% unless @resume.website.blank? %>
+          <li><span>Website: </span> <strong><%= link_to @resume.website, @resume.website %></strong></li>
+        <% end %>
+        
+        <li><span>Email: </span> <strong> <a class="email" href='mailto:<%= "#{@resume.user.email}" %>'><%= @resume.user.email %></a></strong></li>
+        
+      </ul>
+
+    <div class="section">
+      <h2>Education</h2>
+      <% @resume.educations.each do |education| %>
+        <div class="item">
+          <h3><%= education.institute_name %></h3>
+          <h4><%= education.degree %></h4>
+          <div class="date"><%= education.start_date %> to <%= education.end_date %></div>
+          <% unless education.description.blank? %>
+            <div class="description">
+              <p><%= education.description %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  
+    <div class="section">
+      <h2>Experience</h2>
+      <% @resume.experiences.each do |experience| %>
+        <div class="item">
+          <h3><%= experience.company_name %></h3>
+          <h4><%= experience.designation %></h4>
+          <div class="date"><%= experience.start_date %> to <%= experience.end_date %></div>
+          <div class="description">
+            <p><%= experience.job_description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <% if @resume.skills.any? %>
+      <div class="section skills">
+        <h2>Skills</h2>
+        <% @resume.skills.each do |skill| %>
+           <div class="item">
+              <h3><%= skill.skill %></h3>
+                <% unless skill.description.blank? %>
+                  <div class="description">
+                    <h4><%= skill.description %></h4>
+                  </div>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+    <% end %>
+    
+      
+     
+      
+    
+    
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<section class="row resume_form">
+  <div class="ten columns offset-by-one">
+    <%= form_for([current_user, @resume], html: { class: "nice twelve columns"}) do |f| %>
+    <div class="resume_wrapper">
+       <header>
+         <%= f.text_field :title, class: "four columns centered resume_title", value: @resume.title || "Resume Title" %>
+       </header>
+       
+       <% if @resume.errors.any? %>
+         <div id="error_explanation">
+            <h3><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h3>
+
+            <ul>
+            <% @resume.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+         </div>
+       <% end %>
+       
+       <div class="row">
+       <fieldset class="eleven columns centered">
+         <legend>Personal Details</legend>
+         <div class="field row">
+           <div class="six columns">
+            <%= f.label :firstname, "Enter your first name" %>  
+            <%= f.text_field :firstname, class: "large input-text", placeholder: "Jonathan" %>
+           </div><!--six columns-->
+           
+           <div class="five columns offset-by-one">
+             <%= f.label :lastname, "Enter your last name" %>
+             <%= f.text_field :lastname, class: "medium input-text", placeholder: "Doe" %>
+           </div><!--six columns-->
+         </div><!--row-->
+      
+        <div class="field row">     
+          <div class="six columns">  
+            <%= f.label :address %>        
+            <%= f.text_area :address, class: "large small", placeholder: "1600 Amphitheatre Parkway, Mountain View, California, 94043" %>
+          </div>
+          
+          <div class="five columns right offset-by-one">
+            <div class="row first">
+              <%= f.label :phone %>  
+              <%= f.text_field :phone, class: "input-text medium", placeholder: "413-123-4567" %> 
+            </div>
+            
+            <div class="row">
+               <%= f.label :website %>
+              <%= f.text_field :website, class: "input-text medium", placeholder: "http://myportfolio.com/" %>
+             
+            </div>
+          </div><!--six columns-->
+        </div><!--row-->
+      
+         <div class="field row objective">
+           <%= f.label :objective, "Professional Profile", class: "one column subheading" %>
+           <%= f.text_area :objective, class: "nine columns right small", placeholder: "Example Professional Profile: Experienced solution sales professional, with a proven track record for turning around sales for aging products, cutting sales cycle lengths, and growing revenues by an average 35 percent" %>
+         </div>
+       </fieldset><!--personal_details-->
+       </div>
+        
+        <div class="row">
+           <fieldset class="eleven columns centered">
+              <div class="block row">
+               <p class="subheading two columns">Education Details</p>
+               <%= f.fields_for :educations, do |education_form| %>
+                 <%= render "education", :f => education_form %>
+               <% end %>
+              
+               <%= link_to_add_fields("Add a school", f, :educations) %>
+             </div><!--block-->
+              
+                 
+          </fieldset>
+          </div>
+          
+          
+          <div class="row">
+          <fieldset class="eleven columns centered">
+              <div class="block row">
+               <p class="subheading two columns">Employment details</p>
+          <%= f.fields_for :experiences do |experience_form| %>
+            <%= render "experience", :f => experience_form %>  
+          <% end %>
+          <%= link_to_add_fields("Add a position", f, :experiences) %>
+         </div><!--block-->
+          
+             
+      </fieldset>
+      </div>
+      
+      
+      <div class="row">  
+       <fieldset class="eleven columns centered">
+         <legend>Additional Information</legend>
+            <div class="block row">
+              <%= f.fields_for :skills do |skill_form| %>
+                <%= render "skill", :f => skill_form %>  
+              <% end %>
+                <%= link_to_add_fields("Add a skill or expertise", f, :skills) %>
+        </div><!--block-->
+      </fieldset>
+      </div>
+      
+        <div class="row actions">
+          <div class="four columns centered">
+            <%= f.submit "Save and Continue", class:"button large submit radius  green" %>
+          </div>
+        </div>
+      <% end %>
+
+  </div><!--ten columns-->
+</section><!--resume_form-->   
+
+

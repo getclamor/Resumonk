@@ -1,0 +1,79 @@
+<!--
+  The woods are lovely, dark, and deep,
+  But I have promises to keep,
+  And miles to go before I sleep,
+  And miles to go before I sleep.
+  ~ Robert Frost
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resumonk - Online Resume Builder - Create a beautiful and professional Resume in minutes</title>
+  <meta name="author" content="Bharani M" />
+	<meta name="keywords" content="Resume, CV, resume builder, online resume generator, creative resume, online CV builder, professional resume, beautiful resume designs, online resume builder, create beautiful resumes online, desiger resumes, simple resume online, PDF resume">
+	<meta name="description" content="">
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", :media => "screen" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="header_border"></div>
+  
+  <header class="container">
+    <div class="row">
+      <div class="ten columns offset-by-one">
+      <h1 class="four columns" id="logo"><%= link_to "Resumonk", root_path %></h1>
+    
+      <nav class="eight columns">
+        <% if signed_in? %>
+          <ul class="top_nav right">
+            <li><%= link_to "Your Resumes", current_user, class: "main" %></li>
+            <li><%= link_to "Sign out", logout_path, class: "main" %></li>    
+          </ul><!-- top_nav-->
+        <% else %>
+          <ul class="single right">
+            <span class="completely_free">Go ahead, it completely free!</span>
+            <li class="single_link login"><%= link_to "Login", login_path %></li> 
+            <li class="single_link signup"><%= link_to "Sign Up", signup_path %></li>            
+          </ul>
+        <% end %>
+        
+      </nav>
+      </div><!--ten columns-->
+    </div><!-- row-->
+  </header><!-- container-->
+  
+  <section class="container body_content">
+    <!-- alerts -->
+    <% flash.each do |key, value| %>
+      <div class="row">
+        <div id="alert" class=" eight columns centered alert-box <%= key %>"><%= value %></div>
+      </div><!--row-->
+    <% end %>
+    
+    <%= yield %>
+  </section><!--container-->
+  
+  
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="ten columns offset-by-one">
+          <p class="copyright four columns">&copy; Bharani M. All Rights Reserved.</p>
+          <ul class="sitemap right">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "TOC", toc_path %></li>
+            <li><%= link_to "Privacy Policy", privacy_path %></li>
+            <li><%= link_to "FAQ", faq_path %></li>
+            <li><%= link_to "Resume Samples", root_path %></li>
+          </ul>
+        </div><!--ten columns-->
+       </div><!--row-->
+      </div><!-- container-->
+  </footer>
+</body>
+</html>

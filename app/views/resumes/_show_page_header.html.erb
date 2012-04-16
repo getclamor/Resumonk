@@ -1,0 +1,18 @@
+ <header id="fixed_nav">
+    <div class="wrapper">
+      <h1><%= link_to "Resumonk", root_path %></h1>
+      
+        <ul class="top_links">
+          <% if current_user %>
+            <li><%= link_to "Download PDF", user_resume_path(current_user, @resume, format: "pdf"), class: "button download"  %></li>
+            <% if current_user?(@resume.user) %>
+              <li><%= link_to "Donate", "#", class: "button donate", title: "Donate to help us keep Resumonk site running" %></li>
+            <% end %>
+          
+          <% else %>
+            <li><%= link_to "Download PDF", {format: "pdf"}, class: "button download"  %></li>
+          
+          <% end %>
+        </ul>
+    </div><!--wrapper-->
+  </header>

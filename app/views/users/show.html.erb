@@ -1,0 +1,61 @@
+<section class="dashboard">
+  <div class="row">
+  <div class="ten columns offset-by-one">
+    <div class="panel clearfix">
+      <div class="seven columns">
+        <h4>Howdy, <%= @user.username.humanize %> </h4>
+        <p>You currently have <%= pluralize(@user.resumes.count, "resume") %> active resumes.</p>
+      </div>
+      
+      <%= link_to "Create a new resume", new_user_resume_path(current_user), class: "button big radius nice right" %>
+    </div><!--panel-->
+   </div><!-- ten columns-->
+   </div><!--row-->
+   
+    <% if @resumes.any? %>
+      <div class="row">
+      <table class="ten columns centered">
+        <% @resumes.each do |resume| %>
+          <tr>
+            <td class="first">
+              <h3><%= resume.title.nil? ? "Resume title" : resume.title %></h3>
+            </td>
+            
+            <td><%= link_to 'View', [current_user, resume], class: "button small white radius" %></td>
+            <td><%= link_to "Save as PDF", user_resume_path(current_user, resume, format: "pdf"), class: "button small green radius"  %></td>
+            <td><%= link_to 'Edit', edit_user_resume_path(current_user, resume), class: "button small blue radius" %></td>
+            <td><%= link_to 'Destroy', [current_user, resume], confirm: 'Are you sure?', method: :delete, class: "button radius red small" %></td>
+          </tr>
+        <% end %>
+      </table>
+      </div><!--row-->
+    <% else %>
+      <div class="row">
+      <table class="ten columns centered">
+          <tr>
+            <td>
+              <h3 style="text-align:center;">You haven't created any resumes yet. Go ahead, <%= link_to "get started!", new_user_resume_path(current_user) %></h3>
+            </td>
+          </tr>
+      </table>
+      </div>
+    <% end %>
+    
+    <div class="row break">
+      <div class="ten columns additional_info centered clearfix">
+        <div class="six columns donation_box ">
+          <h4>Donate $10, $20 or $50!</h4>
+          <p>Resumonk has cost me a lot of hours of work, if you use it, please donate a token of your appreciation!</p>
+           <a href="#" class="four columns button green radius">Donate</a>
+        </div><!--donation-box-->
+      
+        <div class="jobs five columns">
+          <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+          <script type="IN/JYMBII" data-format="inline"></script>
+        </div>
+      </div><!--ten columns-->
+    </div><!--row-->
+    
+ 
+</section><!--dashboard-->
+

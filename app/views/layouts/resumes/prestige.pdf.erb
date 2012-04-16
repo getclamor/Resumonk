@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= wicked_pdf_stylesheet_link_tag "prestige_pdf" %>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    
+  </head>
+  <body>
+    <div id="container">
+      
+      <div class="wrapper clearfix">
+      <div id="about">
+        <h1><%= "#{@resume.firstname} #{@resume.lastname}" %></h1>
+        <% unless @resume.experiences.first.designation.blank? %>
+          <h2><%= @resume.experiences.first.designation %></h2>
+        <% end %>
+      </div><!--about-->
+      
+      <ul id="contact">
+        <p id="contact_header">Contact Info</p>
+        <% unless @resume.phone.blank? %>
+          <li><span>Mobile</span><strong><%= @resume.phone %></strong></li>
+        <% end %>
+        <li><span>Email</span><strong><a class="email" href='mailto:<%= "#{@resume.user.email}" %>'><%= @resume.user.email %></a></strong></li>
+        <li><span>Address</span><strong><%= @resume.address %></strong></li>
+        
+        <% unless @resume.website.blank? %>
+          <li><span>Website</span><strong><%= link_to @resume.website, @resume.website %></strong></li>
+        <% end %>
+        
+        
+        
+      </ul><!--contact-->
+    </div><!--wrapper-->
+
+      <div id="content">
+        <div class="section">
+            <div class="section_header">
+              <span>Education</span>
+            </div><!--section-header-->
+          <% @resume.educations.each_with_index do |education, index| %>
+            <div class="item">
+              <h3><%= education.institute_name %></h3>
+              <h4><%= education.degree %></h4>
+              <div class="date"><%= education.start_date %> to <%= education.end_date %></div>
+              <% unless education.description.blank? %>
+                <div class="description">
+                  <p><%= education.description %></p>
+                </div>
+              <% end %>
+              <% unless index == (@resume.educations.length - 1) %>
+                <%= wicked_pdf_image_tag 'pdf/prestige_dots.jpg', class:"dots"  %>
+              <% end %>
+            </div>
+          <% end %>
+      </div><!--section-->
+  
+      <div class="section">
+        <div class="section_header">
+          <span>Experience</span>
+        </div><!--section-header-->
+        
+      <% @resume.experiences.each_with_index do |experience, index| %>
+        <div class="item">
+          <h3><%= experience.company_name %></h3>
+          <h4><%= experience.designation %></h4>
+          <div class="date"><%= experience.start_date %> to <%= experience.end_date %></div>
+          <div class="description">
+            <p><%= experience.job_description %></p>
+          </div>
+          <% unless index == (@resume.experiences.length - 1) %>
+            <%= wicked_pdf_image_tag 'pdf/prestige_dots.jpg', class:"dots"  %>
+          <% end %>
+        </div>
+      <% end %>
+    </div><!--section-->
+  </div><!--content-->
+  
+  <div class="sidebar">
+     <% unless @resume.objective.blank? %>
+    <div class="objective">
+      <div class="section">
+          <div class="section_header">
+            <span>Professional Profile</span>
+          </div><!--section-header-->
+      
+          <p><%= @resume.objective %></p>
+      </div><!--section-->
+    </div><!--objective-->
+        <% end %>
+      <% if @resume.skills.any? %>
+        <div class="section skills">
+            <div class="section_header">
+              
+              <span>Skills</span>
+            </div><!--section-header-->
+        <% @resume.skills.each do |skill| %>
+           <div class="item">
+              <h3 class="skill_header"><%= skill.skill %></h3>
+                <% unless skill.description.blank? %>
+                  <div class="description">
+                    <h4><%= skill.description %></h4>
+                  </div>
+                <% end %>
+            </div>
+        <% end %>
+      </div><!--skills-->
+      <% end %>
+    
+    </div><!--sidebar-->
+    </div><!--container-->
+      
+  </body>
+</html>

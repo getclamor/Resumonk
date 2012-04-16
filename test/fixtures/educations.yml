@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  resume_id: 1
+  institute_name: MyString
+  degree: MyString
+  start_date: 2012-04-05 19:04:39
+  end_date: 2012-04-05 19:04:39
+  gpa: 1.5
+  additional_information: MyText
+
+two:
+  resume_id: 1
+  institute_name: MyString
+  degree: MyString
+  start_date: 2012-04-05 19:04:39
+  end_date: 2012-04-05 19:04:39
+  gpa: 1.5
+  additional_information: MyText

@@ -1,0 +1,17 @@
+<div class="fields ten columns right">
+  
+  <div class="row institute field">
+     <%= f.label :skill, "Skill or Expertise" %>
+     <%= f.text_field :skill, class: "input-text eleven columns left" %>
+   </div>
+
+   <div class="row institute field">
+     <%= f.label :description %>
+     <%= f.text_area :description, class: "input-text eleven columns left small", style: "margin-left: 0;padding: 8px 15px" %>
+   </div>
+   
+   <div class="field row">
+       <%= link_to_remove_fields("remove", f) %>
+    </div>
+
+</div><!--fields-->

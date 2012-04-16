@@ -1,0 +1,128 @@
+<!--
+  The woods are lovely, dark, and deep,
+  But I have promises to keep,
+  And miles to go before I sleep,
+  And miles to go before I sleep.
+  ~ Robert Frost
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @resume.user.username.humanize %>'s Resume | Powered by Resumonk - Online Resume Builder</title>
+  <meta name="author" content="Bharani M" />
+	<meta name="keywords" content="Resume, CV, resume builder, online resume generator, creative resume, online CV builder, professional resume, beautiful resume designs, online resume builder, create beautiful resumes online, desiger resumes, simple resume online, PDF resume">
+	<meta name="description" content="">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag "sleek_pdf", "show_page" %>
+  <%= csrf_meta_tags %>
+
+</head>
+  <body class="sleek">
+    
+    <%= render "show_page_header" %>
+    
+    
+    <div class="show_container">
+       <div id="container">
+
+          <div id="about">
+            <h1><%= "#{@resume.firstname} #{@resume.lastname}" %></h1>
+            <% unless @resume.experiences.first.designation.blank? %>
+              <h2><%= @resume.experiences.first.designation %></h2>
+            <% end %>
+          </div><!--about-->
+
+          <ul id="contact">
+            <% unless @resume.phone.blank? %>
+              <li><span>Mobile</span> <%= @resume.phone %></li>
+            <% end %>
+            <li><span>Email</span><a class="email" href='mailto:<%= "#{@resume.user.email}" %>'><%= @resume.user.email %></a></li>
+            <li><span>Address</span><%= @resume.address %></li>
+
+            <% unless @resume.website.blank? %>
+              <li><span>Website</span><%= link_to @resume.website, @resume.website %></li>
+            <% end %>
+
+
+
+          </ul><!--contact-->
+
+
+          <div id="content">
+            <div class="section">
+                <div class="section_header">
+                  <%= image_tag 'pdf/dot.jpg', class:"dot" %>
+                  <span>Education</span>
+                </div><!--section-header-->
+              <% @resume.educations.each do |education| %>
+                <div class="item">
+                  <h3><%= education.institute_name %></h3>
+                  <h4><%= education.degree %></h4>
+                  <div class="date"><%= education.start_date %> to <%= education.end_date %></div>
+                  <% unless education.description.blank? %>
+                    <div class="description">
+                      <p><%= education.description %></p>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+          </div><!--section-->
+
+          <div class="section">
+            <div class="section_header">
+              <%= image_tag 'pdf/dot.jpg', class:"dot" %>
+              <span>Experience</span>
+            </div><!--section-header-->
+
+          <% @resume.experiences.each do |experience| %>
+            <div class="item">
+              <h3><%= experience.company_name %></h3>
+              <h4><%= experience.designation %></h4>
+              <div class="date"><%= experience.start_date %> to <%= experience.end_date %></div>
+              <div class="description">
+                <p><%= experience.job_description %></p>
+              </div>
+            </div>
+          <% end %>
+        </div><!--section-->
+      </div><!--content-->
+
+      <div class="sidebar">
+         <% unless @resume.objective.blank? %>
+        <div class="objective">
+          <div class="section">
+              <div class="section_header">
+                <%= image_tag 'pdf/dot.jpg', class:"dot" %>
+                <span>Professional Profile</span>
+              </div><!--section-header-->
+
+              <p><%= @resume.objective %></p>
+
+        </div><!--objective-->
+            <% end %>
+          <% if @resume.skills.any? %>
+            <div class="section skills">
+                <div class="section_header">
+                  <%= image_tag 'pdf/dot.jpg', class:"dot" %>
+                  <span>Skills</span>
+                </div><!--section-header-->
+            <% @resume.skills.each do |skill| %>
+               <div class="item">
+                  <h3 class="skill_header"><%= skill.skill %></h3>
+                    <% unless skill.description.blank? %>
+                      <div class="description">
+                        <h4><%= skill.description %></h4>
+                      </div>
+                    <% end %>
+                </div>
+            <% end %>
+          </div><!--skills-->
+          <% end %>
+
+        </div><!--sidebar-->
+        </div><!--container-->
+    </div>
+    
+  </body>
+</html>

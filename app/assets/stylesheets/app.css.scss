@@ -1,0 +1,909 @@
+/* 
+ * Template : Resumonk v1.0
+ * Author : Bharani M
+ * Date : 09-04-2012
+ * Tags : Minimal, responsive, clean, light, grunge
+*/
+
+// Table of Content
+//-----------------------------------------
+// - Variables
+// - Shared Styles
+// - Landing Page
+// - Inner-Content Page
+// - Login/Signup Page
+// - Resume Interface
+// - Dashboard
+
+
+// ---------------------------------------
+// Variables and Mixins
+// ---------------------------------------
+$background: #f8faf7;
+$text_brown: #91a088;
+$text_blue: #7f8e9d;
+$headline_text: #39444f;
+$button_blue: #1e71cf;
+$button_gray: #1e71cf;
+$border: #d0d5cd;
+$input_shadow: #f2e8e8;
+$input_border: #bebbbb;
+$input_text: #dddada;
+$footer_text: #eceeea;
+
+@mixin rounded($radius: 3px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($time: 0.3s) {
+  -moz-transition: all $time ease-in;
+  -webkit-transition: all $time ease-in;
+  -o-transition: all $time ease-in;
+  transition: all $time ease-in;
+}
+
+
+// ---------------------------------------
+// Shared Styles
+// ---------------------------------------
+
+body  {
+  background: $background url("../assets/bg.jpg") left top repeat;
+  font-family: "Open Sans", Arial, Helvetica, "Lucida Grande", sans-serif;
+  font-size: 14px;
+}
+
+h1, h2, h3  {
+  line-height: 1;
+}
+
+h3.sub_heading  {
+  color: darken($text_blue, 20%);
+  font-size: 28px;
+  text-align: center;
+}
+
+section.body_content  {
+  min-height: 500px;
+}
+.green {
+  background: #38c506;
+  &:hover {
+    background: darken(#38c506, 2%);
+  }
+}
+
+#header_border  {
+  background: url("../assets/border_top.jpg") left top repeat-x;
+  height: 6px;
+}
+
+header {
+  #logo {
+    margin-top: 40px;
+  }
+  #logo a {
+    color: $text_brown;
+    font-size: 40px;
+    text-shadow: 0 1px 0 #fff;
+    @include transition();
+    &:hover {
+      color: darken($text_brown, 20%);
+    }
+  }
+  
+  nav {
+    margin-top: 40px;
+  }
+  
+  ul.top_nav  {
+    list-style-type: none;
+    border: 1px solid $border;
+    height: 39px;
+    background: url("../assets/nav_gradient.jpg") left center repeat-x;
+    -moz-box-shadow: 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 0 #fff;
+    box-shadow: 0 1px 0 #fff;
+    @include rounded();
+    
+    li {
+      float: left;
+      border-right: 1px solid $border;
+      &:last-child  {
+        border-right: none;
+      }
+        
+      a {
+        display: block;
+        padding: 10px 20px;
+        font-weight: 700;
+        color: darken($text-blue, 20%);
+        @include transition();
+        &:hover {
+         background: #eff0f0; 
+         color: darken($text-blue, 30%);
+         text-shadow: 0 1px 0 #fff;
+        }
+      }
+    }
+  }  
+  
+  ul.single {
+    border: none;
+    background: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    margin-right: 20px;
+    span.completely_free  {
+      position: absolute;
+      top: -35px;
+      right: 40px;
+      text-indent: -9999px;
+      background: url("../assets/completely_free.jpg") left top no-repeat;
+      width: 175px;
+      height: 32px;
+    }
+    
+    li.single_link  {
+      background: none;
+      float: left;
+      margin: 0 10px;
+    }
+    
+    li.single_link a {
+      display: block;
+      width: 80px;
+      height: 41px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 41px;
+      color: $text_blue;
+      padding-left: 28px;
+      @include transition()
+    }
+    
+    li.single_link.login a {
+      background: url("../assets/login.jpg") left top no-repeat;
+      &:hover {
+        color: darken($text_blue, 30%); 
+      }
+    }
+    
+    li.single_link.signup a {
+      background: url("../assets/signup_btn.jpg") left top no-repeat;
+      color: #fff;
+      text-shadow: 0 1px 1px #000;
+      padding-left: 20px;
+      width: 88px;
+      &:hover {
+        color: lighten($button_blue, 45%); 
+      }
+    }
+  }
+}
+
+footer  {
+  background: url("../assets/footer.jpg") left top repeat-x;
+  height: 39px;
+  font-size: 12px;
+  line-height: 39px;
+  color: $footer_text;
+  p.copyright {
+    font-size: 13px;
+    line-height: 39px;
+    font-weight: 600;
+  }
+  ul.sitemap li {
+    float: left;
+    a {
+      color: $footer_text;
+      margin: 0 8px;
+      font-weight: 700;
+      padding-bottom: 1px;
+      border-bottom: 1px dotted $footer_text;
+      &:hover {
+        color: #fff;
+        border-bottom-style: solid;
+      }
+    }
+  }
+}
+
+div.error_explanation, div#error_explanation {
+  background: #eabeb6;
+  background: rgba(234, 190, 182, 0.5);
+  border: 1px solid red;
+  border: 1px solid rgba(234, 190, 182, 0.9);
+  padding: 10px;
+  @include rounded();
+  h4.error_heading  {
+    font-size: 16px;
+    color: darken($text_blue, 50%);
+    margin: 10px 0;
+  }
+}
+
+div#alert {
+  margin-bottom: 10px;
+}
+
+.reveal-modal {
+  top: 0 !important;
+  border: 1px solid $border;
+  img {
+    border: 1px solid $border;
+  }
+  
+  h3  {
+    margin-bottom: 20px;
+  }
+  
+  a {
+    display: inline-block;
+    padding-top: 8px;
+    font-weight: 700;
+  }
+}
+
+
+.break  {
+  margin-top: 120px;
+}
+.additional_info {
+  margin: 50px 0;
+  padding: 20px 0;
+  background: lighten(#ccc, 10%);
+  border: 1px solid $border;
+  @include rounded();
+  
+  .donation_box {
+    padding: 10px;
+    background: #fff;
+    @include rounded();
+    border: 5px solid #ccc;
+    margin-left: 30px;
+    min-height: 235px;
+    p   {
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+    }
+    
+    h4  {
+      text-align: center;
+      background: lighten(green, 70%);
+      padding: 6px 0;
+    }
+    a {
+      margin-left: 100px;
+      margin-top: 50px;
+    }
+    
+  }
+  
+  .ad_box {
+    padding: 10px;
+    background: #fff;
+    @include rounded();
+    border: 5px solid #ccc;
+    margin-left: 30px;
+  }
+  
+}
+
+.show_links {
+  .additional_info  {
+    margin-bottom: 50px;
+  }
+}
+// ---------------------------------------
+// Landing Page
+// ---------------------------------------
+
+div.headline {
+  h2  {
+    font-size: 44px;
+    color: darken($text_blue, 30%);
+    text-shadow: 0 2px 0 $border;
+    background: url("../assets/headline_bg.jpg") center top no-repeat;
+    padding: 30px 0;
+    padding-bottom: 0;
+    line-height: 1.15;
+    text-align: center;
+    span.underline  {
+      background: url("../assets/underline.jpg") left bottom no-repeat;
+      padding-bottom: 12px;
+    }
+  }
+  
+  p.subheading  {
+    text-align: center;
+    margin-top: 22px;
+    font-weight: 600;
+  }
+}
+
+section.featured div.img_wrap {
+  width: 100%;
+  height: 500px;
+  background: #fff;
+  @include rounded();
+  border: 1px solid darken($border, 10%);
+  margin: 20px 0;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}
+
+section.signup_box   {
+  margin-bottom: 30px;
+  div.box {
+    height: 70px;
+    margin-top: 100px;
+    background: #fff;
+    @include rounded(50px);
+    border: 1px solid darken($border, 10%);
+    box-shadow: 0 2px 0 $border;
+    margin-left: -90px;
+    padding: 0 50px;
+    z-index: 10;
+    position: relative;
+  }
+  
+  img {
+    z-index: 100;
+  }
+  
+  form#home_form  {
+    .input-text {
+      float: left;
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 20px;
+      margin-right: 5px;
+      &:hover, &:focus  {
+        border: 1px solid darken($border, 20%);
+        background: #fff;
+        color: darken($text_brown, 30%);
+        box-shadow: 0 2px 0 $border;
+      }
+    }
+    .input-text.first{
+      margin-left: 50px;
+    }
+    
+    .button {
+      font-size: 14px;
+      text-shadow: 0 1px 0 #000;
+      margin-top: 20px;
+      padding: 5px 15px;
+      font-weight: 600;
+    }
+  }
+  
+  h3.get_started  {
+    text-indent: -9999px;
+    background: url("../assets/get_started_headline.png") left top no-repeat;
+    position: absolute;
+    top: -50px;
+    left: 100px;
+    height: 45px;
+    width: 415px;
+  }
+}
+
+section.how_it_works {
+  
+  div.content_box {
+    background: url("../assets/content_bg.jpg") left top repeat;
+    border: 1px solid $border;
+    @include rounded();
+    margin-bottom: 30px;
+    margin-top: 50px;
+    position: relative;
+    
+    
+    h3.how_it_works_heading {
+      position: absolute;
+      top: -50px;
+      left: 0px;
+      text-indent: -9999px;
+      width: 174px;
+      height: 39px;
+      background: url("../assets/how_it_works.png") left top no-repeat;
+    }
+    
+    ul  {
+      padding: 10px;
+      li h3 {
+        text-transform: uppercase;
+        color: $text_blue;
+        font-size: 20px;
+        margin-top: 10px;
+        text-align: center;
+      }
+      
+      li:hover img  {
+        -moz-transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+      }
+      
+      li img {
+        padding-left: 40px;
+        @include transition();
+      }
+      
+      li p {
+        font-size: 13px;
+        line-height: 22px;
+        color: #000;
+      }
+
+    }
+  }
+}
+
+// ---------------------------------------
+// Inner-Content Page
+// ---------------------------------------
+section.inner_page {
+  
+  article.content {
+    background: #fff left top repeat;
+    min-height: 700px;
+    margin: 30px 0;
+    padding: 15px;
+    border: 1px solid $border;
+    z-index: 10;
+    @include rounded();
+    
+    
+    color: #000;
+    
+    h3  {
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 13px;
+      line-height: 22px;
+    }
+  }
+  
+  aside.sidebar {
+    min-height: 300px;
+    background: url("../assets/sidebar.jpg");
+    @include rounded();
+    z-index: 5;
+    border: 1px solid #fff;
+    padding: 30px;
+    margin-left: -2px;
+    margin-top: 51px;
+    border: 1px solid #fff;
+    box-shadow: inset 0 0 5px $text_brown;
+    border: 1px solid white;
+    
+    .links  {
+      padding-top: 10px;
+      border-top: 1px dotted #000;
+      margin-top: 10px;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    a.button  {
+      color: #fff;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #000;
+    }
+    img.signup_now_headline {
+      margin-top: 20px;
+    }
+    
+    form#side_form  {
+      margin: 10px 0;
+      input.input-text  {
+        padding: 6px 15px;
+        &:hover, :focus {
+          border: 1px solid darken($border, 20%);
+          background: #fff;
+          color: darken($text_brown, 30%);
+          box-shadow: 0 1px 0 $border;
+        }
+      }
+      
+      .btn  {
+        background: url("../assets/get_started_btn.png") left top no-repeat;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        width: 140px;
+        height: 41px;
+        font-size: 16px;
+        margin-left: 15px;
+        margin-top: 10px;
+        text-shadow: 0 1px 0 #000;
+        cursor: pointer;
+        @include transition();
+          &:hover, &:focus {
+            color: lighten($button_blue, 45%);
+            opacity: 1;
+          }
+      }
+    }
+  }
+}
+
+
+// ---------------------------------------
+// Login/Signup Page
+// ---------------------------------------
+.login_box  {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid $border;
+  padding: 30px 0;
+  margin: 100px 0;
+  font-weight: 400;
+  @include rounded();
+  form  {
+    margin-left: 40px;
+    
+    .field  {
+      margin: 20px 0;
+    }
+    
+    label {
+      padding-bottom: 3px;
+    }
+    
+    h4  {
+      font-size: 24px;
+      font-weight: 700;
+      color: $text_blue;
+    }
+    input.input-text {
+      padding: 8px;
+      font-weight: 400;
+      width: 400px;
+      font-size: 14px;
+      color: $input_text;
+      @include transition();
+      &:hover, &:focus  {
+        border: 1px solid darken($border, 20%);
+        background: #fff;
+        color: darken($text_brown, 30%);
+        box-shadow: 0 1px 0 $border;
+      } 
+    }
+    
+    input.btn {
+      display: block;
+      outline: 0;
+      border: none;
+      width: 108px;
+      height: 41px;
+      background: url("../assets/signup_btn.jpg") left top no-repeat;
+      color: #fff;
+      text-shadow: 0 1px 0 #000;
+      font-size: 18px;
+      padding: 0 20px;
+      cursor: pointer;
+      opacity: 0.9;
+      @include transition();
+      &:hover, &:focus {
+         color: lighten($button_blue, 45%);
+         opacity: 1;
+      }
+      
+    }
+  }
+  
+  .monk img {
+    padding-left: 20px;
+    margin-top: 50px;
+  }
+
+}
+
+
+// ---------------------------------------
+// Resume Interface
+// ---------------------------------------
+section.resume_form {
+  .resume_wrapper {
+    background: rgba(255, 255, 255, 0.7);
+    margin: 20px 0;
+    background: #fff;
+    border: 1px solid $border;
+    @include rounded();
+    div.actions {
+      margin-top: 30px;
+      margin-bottom: 30px; 
+      input.submit  {
+        text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+      }
+    }
+    
+    div.field {
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px dotted $border;
+      &:last-child  {
+        border: none;
+      }
+    }
+    
+    div.block .right  {
+      float: right;
+    }
+    
+    a.remove_field {
+     margin-right: 20px; 
+    }
+    
+    a.add_fields  {
+      margin-bottom: 20px;
+    }
+    
+    fieldset {
+      margin-top: 20px;
+      
+      input.input-text, textarea  {
+        padding: 8px;
+        resize: none;
+      }
+      
+      .large {
+        width: 115%;
+      }
+      
+      label {
+        //margin-top: -10px;
+        color: #aaa;
+        margin-bottom: 10px;
+      }
+      
+      .subheading  {
+        padding-top: 50px;
+        color: #000;
+      }
+      
+      textarea.small  {
+        height: 100px;
+      }
+      
+      div.first {
+        margin-bottom: 20px;
+      }
+      
+      .objective textarea {
+        margin-top: 10px;
+        margin-left: 40px;
+      }
+    
+    .institute input.input-text {
+      margin-left: 0;
+      padding: 8px 15px;
+    }
+    
+    .timespan {
+      position: relative;
+      span.to {
+       position: absolute;
+       top: 25px;
+       right: -10px; 
+      }
+    }
+    }
+  }
+  
+  header  {
+    background: $text-blue;
+    text-shadow: 0 1px 0 #000;
+    text-align: center;
+    height: 30px;
+    border: 1px solid darken($text_blue, 10%);
+    input.resume_title  {
+      outline: none;
+      border: none;
+      background: $text-blue;
+      color: #fff;
+      text-shadow: 0 1px 1px #000;
+      font-size: 18px;
+      margin-top: 3px;
+      text-align: center;
+      @include rounded();
+      &:hover {
+        background: lighten($text_blue, 10%);
+      }
+      &:focus {
+        background: ligten($text_blue, 20%);
+        border: 1px solid darken($text_blue, 20%);
+      }
+    }
+  }
+  
+  
+}
+
+
+// ---------------------------------------
+// Dashboard
+// ---------------------------------------
+section.dashboard {
+  .gravatar  {
+    width: 48px;
+    height: 48px;
+    border: 3px solid $border;
+  }
+  
+  .panel  {
+    .button {
+      margin-top: 5px;
+    }
+    margin-bottom: 40px;
+  }
+  
+  table {
+    h3  {
+      font-size: 22px;
+      padding-top: 5px;
+    }
+    td.first  {
+      width: 50%;
+    }
+    
+    td a  {
+      margin-top: 5px;
+    }
+    
+    a.green {
+      background: #38c506;
+      &:hover {
+        background: darken(#38c506, 2%);
+      }
+    }
+  }
+  
+   margin-bottom: 30px;
+}
+
+
+
+// ---------------------------------------
+// Template listing
+// ---------------------------------------
+
+section.templates {
+  padding-left: 30px;
+  margin-top: 30px;
+  .box  {
+    width: 350px;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 50px;
+    background: lighten($border, 10%);
+    border: 1px solid darken($border, 20%);
+    padding: 10px;
+    position: relative;
+    -webkit-box-shadow: inset 0 0 4px #fff;
+    -moz-box-shadow: inset 0 0 4px #fff;
+    box-shadow: inset 0 0 4px #fff;
+    @include rounded(10px);
+    @include transition();
+    cursor: pointer;
+    &:last-child  {
+      margin-right: 0;
+    }
+    
+    &:hover {
+      background: lighten($border, 5%);
+      border: 1px solid darken($border, 30%);
+      -webkit-box-shadow: inset 0 0 5px #fff, 0 0 10px darken($border, 10%);
+      -moz-box-shadow: inset 0 0 5px #fff, 0 0 10px darken($border, 10%);
+      box-shadow: inset 0 0 5px #fff, 0 0 10px darken($border, 10%);
+    }
+    
+    img {
+      @include rounded(5px);
+      border: 1px solid darken($border, 30%);
+      -webkit-box-shadow: 0 0 4px #fff;
+      -moz-box-shadow: 0 0 4px #fff;
+      box-shadow: 0 0 4px #fff;
+    }
+    label {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      padding-top: 4px;
+    }
+    
+    .label_wrapper  {
+      margin: 8px 0 5px 0;
+    }
+    
+    a {
+      color: #fff;
+      z-index: 10;
+    }
+  }
+  
+  .box.active {
+    background: darken($text_blue, 5%);
+    border: 1px solid darken($text_blue, 40%);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    
+    img {
+      border: 1px solid darken($text_blue, 40%);
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+    }
+    
+    label {
+      color: #fff;
+    }
+    
+    
+  }
+ 
+}
+
+
+// ---------------------------------------
+// Show links
+// ---------------------------------------
+
+section.show_links  {
+  .panel  {
+    margin-top: 20px;
+    p   {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+    
+    h4  {
+      font-size: 22px;
+      margin-top: 10px;
+    }
+    
+    a {
+      margin-bottom: 15px;
+    }
+    
+    a.white {
+      padding-right: 40px;
+    }
+  }
+  
+  .short_link {
+    border-top: 2px dotted #ccc;
+    width: 95%;
+    padding: 20px 0;
+    h4 {
+      display: inline;
+    }
+    
+    span  {
+      font-size: 30px;
+      font-weight: 700;
+      float: right;
+      padding-top: 4px;
+    }
+  }
+}
+

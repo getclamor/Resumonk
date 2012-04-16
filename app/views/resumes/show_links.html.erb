@@ -1,0 +1,43 @@
+<section class="show_links">
+  <div class="row">
+  <div class="ten columns offset-by-one">
+    <div class="panel clearfix">
+      <div class="row">
+        <div class="seven columns">
+          <h4>Congrats! Your resume is now ready.</h4>
+          <p>Use the unique URL for sharing the online resume on social networks like LinkedIn, Twitter and Facebook and download your resume as a PDF to print it.</p>
+        </div>
+      
+        <div class="five columns right">
+          <p><%= link_to 'View your resume online', [current_user, @resume], class: "button big nice white radius", target: "_blank" %>
+            <%= link_to "Save your resume as PDF", user_resume_path(current_user, @resume, format: "pdf"), class: "button nice big radius"  %></p>
+        </div>
+      </div><!--row-->
+      
+      <div class="row">
+        <div class="short_link">
+          <h4>Resume short URL:</h4> 
+          <span class="short_url">http://resumonk.com/r/<%= @resume.short_link %></span>
+        </div><!--short_link-->
+      </div>
+    </div><!--panel-->
+   </div><!-- ten columns-->
+   </div><!--row-->
+   
+   
+   <div class="row break">
+     <div class="ten columns additional_info centered clearfix">
+       <div class="six columns donation_box ">
+         <h4>Donate $10, $20 or $50!</h4>
+         <p>Resumonk has cost me a lot of hours of work, if you use it, please donate a token of your appreciation!</p>
+          <a href="#" class="four columns button green radius">Donate</a>
+       </div><!--donation-box-->
+     
+       <div class="jobs five columns">
+         <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+         <script type="IN/JYMBII" data-format="inline"></script>
+       </div>
+     </div><!--ten columns-->
+   </div><!--row-->
+</section><!--dashboard-->
+

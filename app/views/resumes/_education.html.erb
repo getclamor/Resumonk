@@ -1,0 +1,44 @@
+<div class="fields ten columns right">
+  
+  <div class="field row institute">
+      <%= f.label :institute_name, "School's name*" %>
+      <%= f.text_field :institute_name, class: "input-text eleven columns left" %>
+  </div>
+  
+  <div class="field row">
+     <div class="six columns">
+       <%= f.label :degree, "Name of the qualifying degree*" %>
+       <%= f.text_field :degree, class: "input-text", placeholder: "Bachelor of Engineering" %>
+     </div><!--six columns-->
+
+     <div class="six columns">
+       <%= f.label :gpa %>
+       <%= f.text_field :gpa, class: "input-text", placeholder: "3.8" %>
+     </div><!--six columns-->
+   </div>
+   
+  <div class="field row">
+   <div class="six columns timespan">
+    <%= f.label :start_date, "Date of start of degree" %>
+    <%= f.text_field :start_date, class: "input-text", placeholder: "May, 2009" %>
+    <span class="to">to</span>
+   </div>
+    <div class="six columns">
+    <%= f.label :end_date, "Date of completion of degree" %>
+    <%= f.text_field :end_date, class: "input-text", placeholder: "June, 2013" %>
+   </div><!--columns-->
+   
+   <div class="field row institute">
+        <%= f.label :description, "Description/Achievements" %>
+        <%= f.text_area :description, class: "input-text small eleven columns left", style: "margin-left: 0;padding: 8px 15px", placeholder: "You can use this text field to add the area of concentration; month and year degree was (will be) received. Note: You may wish to include the title (using the format appropriate to your particular academic field) of your thesis." %>
+      </div>
+        
+  </div><!--row-->
+ 
+
+  <div class="field row">
+     <%= link_to_remove_fields("remove", f) %>
+  </div>
+</div><!--fields-->
+
+

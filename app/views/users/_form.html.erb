@@ -1,0 +1,24 @@
+<%= form_for(@user, html: { class: "nice eight columns right" }) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <h4>Signup</h4>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "expand input-text", placeholder: "john@doe.com" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "expand input-text", placeholder: "Secret password" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password_confirmation, "Please enter your password again." %>
+    <%= f.password_field :password_confirmation, class: "expand input-text", placeholder: "Secret password" %>
+  </div>
+  
+  <div class="action">
+    <%= link_to "Already have an account? Login now.", login_path, class: "five columns left"%>
+    <%= f.submit "Signup", class: "btn right" %>
+  </div>
+  
+<% end %>

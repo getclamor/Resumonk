@@ -1,0 +1,46 @@
+ <aside class="sidebar three columns">
+   <% unless signed_in? %>
+    <div class="row">
+      <%= image_tag "monk_small.jpg", class: "four columns" %>
+      <%= image_tag "signup_now_headline.jpg", class: "eight columns right signup_now_headline"%>
+    </div><!--row-->
+    
+    <div class="row">
+      <%= form_for(@user, html: { class: "nice", id: "side_form" }) do |f| %>
+        <%= render "shared/error_messages", object: f.object %>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "small input-text", placeholder: "john@doe.com" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "small input-text", placeholder: "Secret password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, "Enter your password again." %>
+          <%= f.password_field :password_confirmation, class: "small input-text", placeholder: "Secret password" %>
+        </div>
+
+        <div class="action">
+          <%= f.submit "Get started", class: "btn centered" %>
+        </div>
+
+      <% end %>
+    </div><!--row-->
+    <% else %>
+      <%= link_to "Manage your resumes", current_user, class:"nice button radius medium" %>
+    <% end %>
+    
+    <div class="row links">
+      <p>Here's a collection of sample resume's that you might find useful</p>
+      <ul>
+        <li><%= link_to "Fresher Resume", "#" %>
+        <li><%= link_to "Developer Resume", "#" %>
+        <li><%= link_to "Consulting Resume", "#" %>
+        <li><%= link_to "Banking Resume", "#" %>
+        <li><%= link_to "Health Admin Resume", "#" %>
+        <li><%= link_to "Accounting Resume", "#" %>
+      </ul>
+  </aside><!--sidebar-->

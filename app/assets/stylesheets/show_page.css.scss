@@ -1,0 +1,154 @@
+// ---------------------------------------
+// Dashboard
+// ---------------------------------------
+
+header#fixed_nav  {
+  height: 50px;
+  background: #232323;
+  border-bottom: 4px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: "Open sans", Helvetica, Arial, sans-serif;
+  
+  .wrapper  {
+    width: 940px;
+    margin: 0 auto;
+    position: relative;
+    h1  {
+      margin: 0;
+      padding: 0;
+      text-shadow: none;
+      position: relative;
+    }
+    h1 a {
+      color: #fff;
+      font-weight: 700;
+      font-size: 20px;
+      width: 200px;
+      text-decoration: none;
+      position: absolute;
+      top: 10px;
+      
+    }
+    
+    ul.top_links  {
+      list-style-type: none;
+      width: 300px;
+      position: absolute;
+      right: 0;
+      top: 15px;
+      
+      
+      li  {
+        float: right;
+        margin: 0 10px;
+        a {
+          padding: 3px 15px;
+          background: lighten(#232323, 10%);
+          color: lighten(#232323, 40%);
+          border: 1px solid lighten(#232323, 15%);
+          font-weight: 700;
+          text-decoration: none;
+          -moz-border-radius: 25px;
+          -webkit-border-radius: 25px;
+          border-radius: 25px;
+          &:hover {
+            background: lighten(#232323, 15%);
+            color: lighten(#232323, 80%);
+            border: 1px solid lighten(#232323, 40%);
+          }
+
+        }
+      }
+    }
+  }
+}
+
+
+
+/*--------------------------------
+  Template specific styles
+  ------------------------------*/
+
+/*------------ Prestige --------------*/
+.prestige {
+  .show_container {
+    border-top: 2px solid #27649d ;
+    margin: 80px auto;
+    width: 800px;
+  }
+  
+  #contact  {
+    width: 340px;
+    top: 10px;
+    li  {
+      display: block;
+      width: 340px;
+    }
+    p#contact_header  {
+      width: 340px;
+    }
+  }
+}
+
+
+/*------------ Elegant --------------*/
+.elegant  {
+  .show_container {
+    margin: 80px auto;
+    width: 940px;
+  }
+}
+
+
+/*------------ Classica --------------*/
+.classica {
+  .show_container {
+    margin: 80px auto;
+    width: 800px;
+  }
+}
+
+
+/*------------ Simplimo --------------*/
+.simplimo {
+  .show_container {
+    margin: 100px auto;
+    width: 800px;
+  }
+  
+  h1 a  {
+    border: none;
+  }
+}
+
+/*------------ Sleek --------------*/
+.sleek {
+  .show_container {
+    margin: 80px auto;
+    width: 900px;
+  }
+  
+  header h1  {
+    border-top: none;
+  }
+  
+  #container  {
+    width: 800px;
+    
+   #content  {
+      width: 500px;
+    }
+    
+    .section_header {
+      margin: 30px 0;
+    }
+  }
+  
+}
+
+  
+  

@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="eight columns offset-by-two login_box">
+    <div class="monk three columns">
+      <%= image_tag("monk.png") %>
+    </div>
+    <%= form_for(:sessions, url: sessions_path, html: { class:"nice eight columns right" }) do |f| %>
+      <h4>Login</h4>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "expand input-text", placeholder: "john@doe.com" %>
+      </div>
+  
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "expand input-text", placeholder: "Secret password" %>
+      </div>
+  
+      <div class="action">
+        <%= link_to "Don't have an account? Signup now!", signup_path, class: "five columns left"%>
+        <%= f.submit "Sign in", class: "btn right"  %><br />
+      </div>
+    <% end %>
+  </div><!--ten columns-->
+</div><!--row-->

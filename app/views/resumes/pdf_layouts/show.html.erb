@@ -1,0 +1,88 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Firstname:</b>
+  <%= @resume.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @resume.lastname %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @resume.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @resume.phone %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @resume.website %>
+</p>
+
+<p>
+  <b>Objective:</b>
+  <%= @resume.objective %>
+</p>
+
+ <% @resume.educations.each do |education| %>
+ <p>
+   <b>Institute name:</b>
+   <%= education.institute_name %>
+ </p>
+
+ <p>
+   <b>Degree:</b>
+   <%= education.degree %>
+ </p>
+
+ <p>
+   <b>Start date:</b>
+   <%= education.start_date %>
+ </p>
+
+ <p>
+   <b>End date:</b>
+   <%= education.end_date %>
+ </p>
+
+ <p>
+   <b>Gpa:</b>
+   <%= education.gpa %>
+ </p>
+  <% end %>
+  
+  
+  <% @resume.experiences.each do |experience| %>
+  <p>
+    <b>Company name:</b>
+    <%= experience.company_name %>
+  </p>
+
+  <p>
+    <b>Designation:</b>
+    <%= experience.designation %>
+  </p>
+
+  <p>
+    <b>Job description:</b>
+    <%= experience.job_description %>
+  </p>
+
+  <p>
+    <b>Start date:</b>
+    <%= experience.start_date %>
+  </p>
+
+  <p>
+    <b>End date:</b>
+    <%= experience.end_date %>
+  </p>
+
+   <% end %>
+

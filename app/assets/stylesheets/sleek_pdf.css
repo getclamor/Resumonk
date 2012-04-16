@@ -1,0 +1,151 @@
+/*
+ * Template: Sleek PDF template
+ * Author: Bharani M
+*/
+
+/*-------------------------------------
+  Basic Styles
+  -----------------------------------*/
+  
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  font: 14px/1.5 Helvetica, Arial, sans-serif;
+  color: #231f20;
+ 
+}
+
+
+h1 {
+  padding-top: 20px;
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: bold;
+  font-style: normal;
+  color: #3c3c3c;
+  border-top: 1px solid #00a9a4;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: normal;
+  font-style: normal;
+  color: #00a9a4;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+h3.skill_header {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  font-style: normal;
+  color: #232323;
+}
+
+h4  {
+  color: #6b595b;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+a:link, a:visited {
+  color: #3c3c3c;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+
+/*-------------------------------------
+  About and Contact
+  -----------------------------------*/
+#container  {
+  width: 580px;
+  margin-left: 100px;
+}
+
+ul#contact  {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+ul#contact li {
+  position: relative;
+}
+
+ul#contact li span  {
+  position: absolute;
+  left: -100px;
+  text-align: right;
+  float: right;
+  display: inline-block;
+  width: 80px;
+  color: #58595b;
+  text-transform: lowercase;
+  font-style: italic;
+  font-size: 12px;
+}
+
+
+/*-------------------------------------
+  Content
+  -----------------------------------*/
+  
+#content  {
+  width: 350px;
+  float: left;
+  margin-right: 30px;
+}
+
+.sidebar  {
+  padding-top: 1px;
+}
+
+.section_header {
+  margin: 20px 0;
+  color: #00a9a4;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.item {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.item div.date {
+  position: absolute;
+  left: -100px;
+  width: 80px;
+  top: 0px;
+  text-align: right;
+  float: right;
+  display: inline-block;
+  width: 80px;
+  color: #58595b;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.section.skills {
+  margin-top: 30px;
+}

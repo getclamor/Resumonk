@@ -1,0 +1,117 @@
+<!--
+  The woods are lovely, dark, and deep,
+  But I have promises to keep,
+  And miles to go before I sleep,
+  And miles to go before I sleep.
+  ~ Robert Frost
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @resume.user.username.humanize %>'s Resume | Powered by Resumonk - Online Resume Builder</title>
+  <meta name="author" content="Bharani M" />
+	<meta name="keywords" content="Resume, CV, resume builder, online resume generator, creative resume, online CV builder, professional resume, beautiful resume designs, online resume builder, create beautiful resumes online, desiger resumes, simple resume online, PDF resume">
+	<meta name="description" content="">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag "simplimo_pdf", "show_page" %>
+  <%= csrf_meta_tags %>
+
+</head>
+  <body class="simplimo">
+    
+    <%= render "show_page_header" %>
+    
+    
+    <div class="show_container">
+       <div id="page-wrap">
+          <div id="contact-info" class="vcard clearfix">
+
+              <!-- Microformats! -->
+
+              <h1 class="fn"><%= "#{@resume.firstname} #{@resume.lastname}" %></h1>
+
+              <p class="info">
+                <% unless @resume.phone.blank? %>
+                  Cell: <span class="tel"><%= @resume.phone %></span><br />
+                <% end %>
+                  Address: <span class="add"><%= @resume.address %></span><br />
+                  Email: <a class="email" href='mailto:<%= "#{@resume.user.email}" %>'><%= @resume.user.email %></a><br />
+                <% unless @resume.website.blank? %>
+                  Website: <%= link_to @resume.website, @resume.website %></a>
+                <% end %>
+              </p>
+
+          </div>
+
+          <% unless @resume.objective.blank? %>
+            <div id="objective">
+              <p>
+                 <%= @resume.objective %>
+              </p>
+            </div>
+          <% end %>
+          <div class="clear"></div>
+
+          <dl>
+              <dd class="clear"></dd>
+
+              <dt>Education</dt>
+
+              <% @resume.educations.each do |education| %>
+               <dd class="full">
+                    <h2><%= education.institute_name %>
+                        <span class="timespan"><%= education.start_date %> to <%= education.end_date %></span>
+                    </h2>
+
+                    <p><strong><%= education.degree %>
+
+                      </strong><br />
+                    <% unless education.description.blank? %>
+                      <div class="description">
+                        <p><%= education.description %></p>
+                      </div>
+                    <% end %>
+                  </p>
+                </dd>
+              <% end %>
+
+
+              <dd class="clear" style=" page-break-before:auto"></dd>
+                    <dd class="clear"></dd>
+
+                    <dt>Experience</dt>
+
+                    <% @resume.experiences.each do |experience| %>
+                     <dd class="full">
+                          <h2><%= experience.designation %>
+                              <span class="timespan"><%= experience.start_date %> to <%= experience.end_date %></span>
+                          </h2>
+
+                          <p><strong><%= experience.company_name %></strong><br />
+                          <p class="description"><%= experience.job_description %></p>
+                      </dd>
+                    <% end %>
+
+
+            <dd class="clear" style="margin-bottom: 10px; page-break-before:auto"></dd>
+
+              <% if @resume.skills.any? %>
+                <dt>Skills</dt>
+                <% @resume.skills.each do |skill| %>
+                  <dd class="full">
+                    <h2><%= skill.skill %></h2>
+                    <p><%= skill.description %></p>
+                  </dd>
+                  <% end %>
+              <% end %>
+
+
+          </dl>
+
+          <div class="clear"></div>
+        </div><!--page-wrap-->
+    </div>
+    
+  </body>
+</html>
