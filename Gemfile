@@ -6,7 +6,7 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
   gem 'sqlite3'
-  gem 'wicked_pdf'
+  
 end
 
 # Gems used only for assets and not required
@@ -28,7 +28,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 
 # Generating PDF
-
+gem 'wicked_pdf'
 
 # Zurb Foundation
 gem "zurb-foundation"
