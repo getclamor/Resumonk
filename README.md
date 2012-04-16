@@ -1,6 +1,6 @@
 # Resumonk 
 
-Resumonk is an online resume builder that saves you money and time by helping you create professional and visually appealing resumes. Resumonk handles the job of formatting and converting your resume into pdf format, thereby letting you focus on writing a clear and lucid resume.
+Resumonk is an online resume builder that saves you money and time by helping you create professional and visually appealing resumes. Resumonk handles the job of formatting and converting your resume into pdf format, thereby letting you focus on writing quality content.
 
 
 ### Features

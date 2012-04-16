@@ -4,9 +4,9 @@ gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
-
+group :development do
+  gem 'sqlite3'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,6 +34,10 @@ gem "zurb-foundation"
 
 # Random URL
 gem "rufus-mnemo"
+
+group :production do
+  gem 'pg'
+end
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

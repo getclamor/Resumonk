@@ -431,21 +431,21 @@ section.how_it_works {
         text-align: center;
       }
       
-      li:hover img  {
-        -moz-transform: scale(1.05);
-        -webkit-transform: scale(1.05);
-        transform: scale(1.05);
+      li:hover p  {
+        color: #000;
       }
       
       li img {
         padding-left: 40px;
-        @include transition();
+        margin: 5px 0;
+
       }
       
       li p {
         font-size: 13px;
         line-height: 22px;
-        color: #000;
+        color: darken($text_blue, 30%); 
+        @include transition();
       }
 
     }
@@ -476,6 +476,10 @@ section.inner_page {
     p {
       font-size: 13px;
       line-height: 22px;
+    }
+    
+    ol  {
+      margin-top: 20px;
     }
   }
   

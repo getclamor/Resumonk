@@ -1,6 +1,6 @@
 <section class="row resume_form">
   <div class="ten columns offset-by-one">
-    <%= form_for([current_user, @resume], html: { class: "nice twelve columns"}) do |f| %>
+    <%= form_for([current_user, @resume], html: { class: "nice twelve columns resume_form"}) do |f| %>
     <div class="resume_wrapper">
        <header>
          <%= f.text_field :title, class: "four columns centered resume_title", value: @resume.title || "Resume Title" %>
