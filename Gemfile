@@ -28,7 +28,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 
 # Generating PDF
-# gem 'wicked_pdf'
+gem 'wicked_pdf'
 
 # Zurb Foundation
 gem "zurb-foundation"
