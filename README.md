@@ -15,4 +15,4 @@ Choose from our collection of beatifully designed resume templates to create an 
 Resumonk lets you save your resume as a PDF so that you can print it any time. Also, for each resume, you get a unique link to help that you can share with others via email, Facebook and Twitter.
 
 
-## Go ahead, [http://resumonk.com](get started) with your resume!
+## Go ahead, [get started](http://resumonk.com) with your resume!
