@@ -3,31 +3,30 @@
 
 require 'logger'
 require 'digest/md5'
-require 'open3'
+require 'rbconfig'
+require RbConfig::CONFIG['target_os'] == 'mingw32' && !(RUBY_VERSION =~ /1.9/) ? 'win32/open3' : 'open3'
 require 'active_support/core_ext/class/attribute_accessors'
+require 'active_support/core_ext/object/blank'
 
 require 'wicked_pdf_railtie'
 require 'wicked_pdf_tempfile'
 
 class WickedPdf
-  @@config = {
-#  	:exe_path => "/usr/local/bin/wkhtmltopdf"
-  	:exe_path => Rails.root.join('bin', 'wkhtmltopdf-amd64').to_s
-  }
+  @@config = {}
   cattr_accessor :config
 
   def initialize(wkhtmltopdf_binary_path = nil)
     @exe_path = wkhtmltopdf_binary_path
     @exe_path ||= WickedPdf.config[:exe_path] unless WickedPdf.config.empty?
-    @exe_path ||= `which wkhtmltopdf`.chomp
+    @exe_path ||= (defined?(Bundler) ? `bundle exec which wkhtmltopdf` : `which wkhtmltopdf`).chomp
     raise "Location of wkhtmltopdf unknown" if @exe_path.empty?
     raise "Bad wkhtmltopdf's path" unless File.exists?(@exe_path)
     raise "Wkhtmltopdf is not executable" unless File.executable?(@exe_path)
   end
 
   def pdf_from_string(string, options={})
-    command = "#{@exe_path} #{parse_options(options)} -q - - " # -q for no errors on stdout
-    p "*"*15 + command + "*"*15 unless defined?(Rails) and Rails.env != 'development'
+    command = "\"#{@exe_path}\" #{parse_options(options)} #{'-q ' unless on_windows?}- - " # -q for no errors on stdout
+    print_command(command) if in_development_mode?
     pdf, err = Open3.popen3(command) do |stdin, stdout, stderr|
       stdin.binmode
       stdout.binmode
@@ -43,6 +42,19 @@ class WickedPdf
   end
 
   private
+
+    def in_development_mode?
+      (defined?(Rails) && Rails.env == 'development') ||
+        (defined?(RAILS_ENV) && RAILS_ENV == 'development')
+    end
+
+    def on_windows?
+      RbConfig::CONFIG['target_os'] == 'mingw32'
+    end
+
+    def print_command(cmd)
+      p "*"*15 + cmd + "*"*15
+    end
 
     def parse_options(options)
       [
@@ -67,10 +79,14 @@ class WickedPdf
     end
 
     def make_option(name, value, type=:string)
+      if value.is_a?(Array)
+        return value.collect { |v| make_option(name, v, type) }.join('')
+      end
       "--#{name.gsub('_', '-')} " + case type
         when :boolean then ""
         when :numeric then value.to_s
-        else "'#{value}'"
+        when :name_value then value.to_s
+        else "\"#{value}\""
       end + " "
     end
 
@@ -95,8 +111,9 @@ class WickedPdf
     end
 
     def parse_toc(options)
+      r = '--toc ' unless options.nil?
       unless options.blank?
-        r = make_options(options, [ :font_name, :header_text], "toc")
+        r += make_options(options, [ :font_name, :header_text], "toc")
         r +=make_options(options, [ :depth,
                                     :header_fs,
                                     :l1_font_size,
@@ -117,6 +134,7 @@ class WickedPdf
                                     :disable_links,
                                     :disable_back_links], "toc", :boolean)
       end
+      return r
     end
 
     def parse_outline(options)
@@ -143,9 +161,12 @@ class WickedPdf
                                     :dpi,
                                     :encoding,
                                     :user_style_sheet])
+        r +=make_options(options, [ :cookie,
+                                    :post], "", :name_value)
         r +=make_options(options, [ :redirect_delay,
                                     :zoom,
-                                    :page_offset], "", :numeric)
+                                    :page_offset,
+                                    :javascript_delay], "", :numeric)
         r +=make_options(options, [ :book,
                                     :default_header,
                                     :disable_javascript,
@@ -162,4 +183,3 @@ class WickedPdf
     end
 
 end
-
