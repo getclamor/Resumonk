@@ -117,7 +117,7 @@ class ResumesController < ApplicationController
         render :pdf => "file_name",
         :layout   => "resumes/#{layout}.pdf.erb",
         :template => "resumes/pdf_layouts/show.html.erb",
-        :wkhtmltopdf  => "#{Rails.root}/bin/wkhtmltopdf-amd64",
+        :wkhtmltopdf  => Rails.root.join('bin', 'wkhtmltopdf-amd64').to_s,
       end
     end
   end
