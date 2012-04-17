@@ -327,21 +327,50 @@ div.headline {
   }
 }
 
-section.featured div.img_wrap {
-  width: 100%;
-  height: 500px;
-  background: #fff;
-  @include rounded();
-  border: 1px solid darken($border, 10%);
-  margin: 20px 0;
-  position: relative;
+section.featured {
+//  width: 100%;
+//  height: 500px;
+//  background: #fff;
+//  @include rounded();
+//  border: 1px solid darken($border, 10%);
+//  margin: 20px 0;
+//  position: relative;
+//
+//  img {
+//    position: absolute;
+//    top: 10px;
+//    left: 10px;
+//    width: 758px;
+//    height: 493px;
+//  }
 
-  img {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+  div.orbit-wrapper div.timer {
+      top: 35%;
+      left: 50%;
+      display:none;
+  }
+  
+
+  img {    
+    border: 1px solid darken($border, 10%);
+    padding: 10px;
+    background: #fff;
+    @include rounded();
+  }
+  
+  div.orbit-caption {
+    display: block;
+    bottom: 80px;
+    width: 50%;
+    left: 0;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 0 10px black;
   }
 }
+
+
 
 section.signup_box   {
   margin-bottom: 30px;

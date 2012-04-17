@@ -8,9 +8,13 @@
   
   <section class="row featured">
     <div class="ten columns offset-by-one">
-      <div class="img_wrap">
-      
-        
+      <div id="featured">
+            <%= image_tag "featured_interface.jpg", alt: "Easy to use interface" %>
+            <%= image_tag "featured_templates.jpg", alt: "Elegant, professional and modern resume templates" %>  
+            <%= image_tag "featured_share.jpg", alt: "Share your resume online or save it as PDF" %>
+            <span class="orbit-caption" id="htmlCaption1">Easy to use interface</span>
+            <span class="orbit-caption" id="htmlCaption2">Elegant, professional and modern resume templates</span>
+            <span class="orbit-caption" id="htmlCaption3">Share your resume online or save it as PDF</span>
       </div>
     </div><!--ten-columns-->
   </section><!--featured-->
@@ -56,3 +60,19 @@
       
     </div><!--ten-columns-->
   </section><!--how_it_works-->
+  
+  <script type="text/javascript">
+       $(window).load(function() {
+           $("#featured img").each(function(i, image) {
+             $(this).attr("data-caption", ("#htmlCaption" + (i+1)));
+           });
+           
+           $('#featured').orbit({
+              directionalNav: false,
+              bullets: true,	
+              captions: true,
+              pauseOnHover: false, 
+              captionAnimation: 'fade', 
+           });
+       });
+  </script>
