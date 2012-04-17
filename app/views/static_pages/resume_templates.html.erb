@@ -1,0 +1,42 @@
+<section class="row templates">
+  <div class="ten columns offset-by-one">
+   <h3 class="templates_heading">Resume templates</h3>
+    <% [ 'elegant', 'simplimo', 'sleek', 'prestige', 'classica'].each_with_index do |theme, index| %>
+      
+        <div class='box <%= "#{theme}" %>'>
+          <%= image_tag "#{theme}_small.jpg" %>
+        
+          <div class="row label_wrapper">
+            <span><%= theme.humanize %></span>
+            <div class="right">
+              <a href="#" title="See this template in action" class="preview small button radius" data-template='<%= "#{theme}" %>'>Preview</a>
+            </div>
+          </div><!--row-->
+        </div><!--box-->
+        
+        
+        <div class='reveal-modal <%= "#{theme}_modal" %>'>
+          <h3 class="three columns"><%= theme.humanize %></h3>
+          <%= image_tag "#{theme}.jpg" %>
+          <a class="close-reveal-modal">&#215;</a>
+        </div>
+       <% end %>
+  
+  </div><!--ten columns-->
+</section><!--templates-->
+
+<script>
+  $(function()  {
+    $(".preview").click(function(e) {
+       var theme = $(this).data("template")
+       $("." + theme + "_modal").reveal();
+       return false
+    });
+    
+    $(".box").click(function()  {
+      $(this).find(".preview").trigger("click")
+    })
+
+  })
+  
+</script>

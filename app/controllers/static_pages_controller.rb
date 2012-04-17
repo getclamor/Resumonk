@@ -19,4 +19,7 @@ class StaticPagesController < ApplicationController
   def faq
     @user = User.new
   end
+  
+  def resume_templates
+  end
 end

@@ -34,13 +34,16 @@
     <% end %>
     
     <div class="row links">
-      <p>Here's a collection of sample resume's that you might find useful</p>
+      <h4>Sitemap</h4>
+      <nav>
       <ul>
-        <li><%= link_to "Fresher Resume", "#" %>
-        <li><%= link_to "Developer Resume", "#" %>
-        <li><%= link_to "Consulting Resume", "#" %>
-        <li><%= link_to "Banking Resume", "#" %>
-        <li><%= link_to "Health Admin Resume", "#" %>
-        <li><%= link_to "Accounting Resume", "#" %>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Conditions", toc_path %></li>
+        <li><%= link_to "Privacy Policy", privacy_path %></li>
+        <li><%= link_to "FAQ", faq_path %></li>
+        <li><%= link_to "Resume Templates", resume_templates_path %></li>
       </ul>
+      </nav>
+    </div><!--row-->
   </aside><!--sidebar-->
