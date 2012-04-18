@@ -19,6 +19,7 @@
           <tr>
             <td class="first">
               <h3><%= resume.title.nil? ? "Resume title" : resume.title %></h3>
+              <strong>Unique URL: </strong><%= link_to "http://resumonk.com/r/#{resume.short_link}", "http://resumonk.com/r/#{resume.short_link}", target: "_blank" %>
             </td>
             
             <td><%= link_to 'View', [current_user, resume], class: "button small white radius" %></td>
